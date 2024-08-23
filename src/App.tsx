@@ -43,7 +43,7 @@ function App() {
       const agent = new HttpAgent({ identity });
 
       // Create an actor to interact with the backend canister
-      const actor = createActor(process.env.CANISTER_ID_BACKEND, {
+      const actor = createActor(process.env.CANISTER_ID_BACKEND as string, {
         agent,
       });
 
