@@ -4,6 +4,9 @@ import motokoShadowLogo from './assets/motoko_shadow.png';
 import reactLogo from './assets/react.svg';
 import viteLogo from './assets/vite.svg';
 import { useQueryCall, useUpdateCall } from '@ic-reactor/react';
+import { AuthClient } from '@dfinity/auth-client';
+import { HttpAgent } from '@dfinity/agent';
+import { createActor } from './declarations/backend'; // Import the createActor function
 
 function App() {
   const { data: count, call: refetchCount } = useQueryCall({
@@ -16,6 +19,42 @@ function App() {
       refetchCount();
     },
   });
+
+  // Authentication handler function
+  const handleAuth = async (e: any) => {
+    e.preventDefault();
+
+    try {
+      // Create an AuthClient
+      const authClient = await AuthClient.create();
+
+      // Start the login process
+      await new Promise((resolve) => {
+        authClient.login({
+          identityProvider: process.env.II_URL,
+          onSuccess: resolve,
+        });
+      });
+
+      // Get the identity from the auth client
+      const identity = authClient.getIdentity();
+
+      // Create an agent with the identity
+      const agent = new HttpAgent({ identity });
+
+      // Create an actor to interact with the backend canister
+      const actor = createActor(process.env.CANISTER_ID_BACKEND, {
+        agent,
+      });
+
+      // You can now use the actor to call service methods
+      console.log('Authentication successful!', agent);
+    } catch (error) {
+      console.error('Authentication failed:', error);
+    }
+
+    return false;
+  };
 
   return (
     <div className="App">
@@ -48,6 +87,11 @@ function App() {
         <p>
           Edit <code>backend/Backend.mo</code> and save to test HMR
         </p>
+      </div>
+      <div className="card">
+        <button onClick={handleAuth}>
+          Authenticate with Internet Identity
+        </button>
       </div>
       <p className="read-the-docs">
         Click on the Vite, React, and Motoko logos to learn more
