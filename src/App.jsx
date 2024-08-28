@@ -7,6 +7,7 @@ import { canisterId } from './declarations/backend';
 import kstreamLogo from './assets/logo.svg';
 // import Sidebar from './components/sidebar';
 import Dashboard from './components/dashboard';
+import VideoPlayer from './components/videoplayer';
 
 
 function App() {
@@ -31,7 +32,7 @@ function App() {
       await new Promise((resolve) => {
         authClient.login({
           // 1 minute in nanoseconds
-          maxTimeToLive: BigInt(60 * 1000 * 1000 * 1000),
+          maxTimeToLive: BigInt(7 * 24 * 60 * 60 * 1000 * 1000 * 1000),
           identityProvider: process.env.II_URL,
           onSuccess: resolve,
         });
@@ -69,7 +70,8 @@ function App() {
 
   return (
     <div>
-      {isAuthenticated ? <Dashboard /> : <AuthInternet />}
+      {/* {isAuthenticated ? <Dashboard /> : <AuthInternet />} */}
+      <Dashboard/>
     </div>
   );
 }

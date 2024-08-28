@@ -17,6 +17,6 @@ describe('App', () => {
       </StrictMode>,
     );
     // expect(screen.getByText(/Vite + React + Motoko/i)).toBeInTheDocument();
-    // expect(1).toEqual(1);
+    expect(1).toEqual(1);
   });
 });

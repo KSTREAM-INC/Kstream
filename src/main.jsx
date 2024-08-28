@@ -14,6 +14,7 @@ import { ActorProvider, AgentProvider } from '@ic-reactor/react';
 import { idlFactory, canisterId } from './declarations/backend';
 // import Sidebar from './components/dashboard';
 import Dashboard from './components/dashboard';
+import VideoPlayer from './components/videoplayer';
 
 
 const router = createBrowserRouter( 
@@ -35,6 +36,7 @@ const router = createBrowserRouter(
         element={<Dashboard />}
         // loader={redirectIfUser}
       />
+      <Route path="/video/:id" element={<VideoPlayer />} />
       {/* <Route path="logout" action={logoutUser} /> */}
     {/* </Route>  */}
   </Route>)
