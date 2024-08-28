@@ -7,7 +7,7 @@ import { canisterId } from './declarations/backend';
 import kstreamLogo from './assets/logo.svg';
 // import Sidebar from './components/sidebar';
 import Dashboard from './components/dashboard';
-import VideoPlayer from './components/videoplayer';
+// import VideoPlayer from './components/videoplayer';
 
 
 function App() {
@@ -16,14 +16,16 @@ function App() {
 
   useEffect(() => {
     const initAuth = async () => {
-      const client = await AuthClient.create();
-      setAuthClient(client);
-      const authenticated = await client.isAuthenticated();
-      setIsAuthenticated(authenticated);
+      if (!authClient) {
+        const client = await AuthClient.create();
+        setAuthClient(client);
+        const authenticated = await client.isAuthenticated();
+        setIsAuthenticated(authenticated);
+      }
     };
 
     initAuth();
-  }, []);
+  }, [authClient]);
 
   const handleAuth = async (e) => {
     e.preventDefault();
@@ -32,7 +34,7 @@ function App() {
       await new Promise((resolve) => {
         authClient.login({
           // 1 minute in nanoseconds
-          maxTimeToLive: BigInt(7 * 24 * 60 * 60 * 1000 * 1000 * 1000),
+          maxTimeToLive: BigInt( 60 * 1000 * 1000 * 1000),
           identityProvider: process.env.II_URL,
           onSuccess: resolve,
         });
@@ -49,6 +51,13 @@ function App() {
       setIsAuthenticated(true);
     } catch (error) {
       console.error('Authentication failed:', error);
+    }
+  };
+
+  const logout = async () => {
+    if (authClient) {
+      await authClient.logout();
+      setIsAuthenticated(false);
     }
   };
 
@@ -70,8 +79,8 @@ function App() {
 
   return (
     <div>
-      {/* {isAuthenticated ? <Dashboard /> : <AuthInternet />} */}
-      <Dashboard/>
+      {isAuthenticated ? <Dashboard /> : <AuthInternet />}
+      {/* <Dashboard/> */}
     </div>
   );
 }

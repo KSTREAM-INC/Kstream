@@ -3,7 +3,8 @@ import { NavLink } from 'react-router-dom';
 import { HomeIcon, ClockIcon, CogIcon, CreditCardIcon } from "@heroicons/react/24/outline";
 import kstreamLogo from '../assets/logo.svg';
 import profile from "../assets/profile.svg";
-import VideoCard from './videocard';
+import Inquery from "../assets/inquery.svg";
+// import VideoCard from './videocard';
 
 const Dashboard = () => {
 
@@ -52,19 +53,19 @@ const Dashboard = () => {
   const videos = [
     {
       id: 'bKzI7w5_fDU',
-      title: 'Understanding the concept of ICP in 2024',
+      title: 'What is INTERNET COMPUTER? ICP Crypto Explained! (Animated)',
       thumbnail: '../assets/icp2thumbnail.png',
-      author: 'Amelia don',
-      duration: '5 hrs 8 mins',
-      views: '345k',
+      author: 'Crypto Square',
+      duration: '10 mins',
+      views: '16k',
     },
     {
-      id: 'icp-video-2',
-      title: 'Understanding the concept of ICP in 2024',
-      thumbnail: '../assets/icpthumbnail.png',
-      author: 'Amelia don',
-      duration: '5 hrs 8 mins',
-      views: '345k',
+      id: 'rybpe-EwKmw',
+      title: 'Why ICP Canisters and Motoko Backends Excel in Cybersecurity',
+      thumbnail: '../assets/whyICPcanister.png',
+      author: 'HIVE FORENSICS A.I.',
+      duration: '3:16 mins',
+      views: '37k',
     },
     {
       id: 'mr15Xzb1Ook',
@@ -76,28 +77,28 @@ const Dashboard = () => {
     }]
 
     const recommended =[{
-      id: 'secret-hacks-1',
-      title: 'Secret hacks to manipulating content in tech',
+      id: 'wqGOdinaC5s',
+      title: 'Raoul Pal: "Internet Computer Will Be MASSIVE!" - DFINITY ICP Crypto 2023',
       thumbnail: '../assets/icpexplode.png',
-      author: 'Samcodes90',
-      duration: '2 hrs 12 mins',
-      views: '36.9k',
+      author: 'Bitcoin Bros',
+      duration: '8.04 mins',
+      views: '64k',
     },
     {
-      id: 'secret-hacks-2',
-      title: 'Secret hacks to manipulating content in tech',
+      id: 'XgsOKP224Zw',
+      title: 'An Overview of the Internet Computer',
       thumbnail: '../assets/icptalk.png',
-      author: 'Samcodes90',
-      duration: '2 hrs 12 mins',
-      views: '36.9k',
+      author: 'DFINITY',
+      duration: '6:28 mins',
+      views: '77k',
     },
     {
-      id: 'secret-hacks-3',
-      title: 'Secret hacks to manipulating content in tech',
-      thumbnail: '../assets/bull_thumbnail.png',
-      author: 'Samcodes90',
-      duration: '2 hrs 12 mins',
-      views: '36.9k',
+      id: 'cckBId4AXz0',
+      title: 'The Truth About ICP Crypto: The Future of Internet & Blockchain in 4 Minutes | Elmin Ferati',
+      thumbnail: '../assets/ICPtruth.png',
+      author: 'Elmin Ferati - Finance',
+      duration: '3:45 mins',
+      views: '7.2k',
     }
   ];
   
@@ -105,9 +106,9 @@ const Dashboard = () => {
 
 
   return (
-    <div className="flex h-screen">
+    <div className="flex h-screen ">
       {/* Sidebar */}
-      <div className="w-64 bg-gray-900 text-white flex flex-col">
+      <div className="h-dvh w-64 bg-gray-900 ">
         <div className="flex items-center justify-center h-16 shadow-lg">
           <img src={kstreamLogo} alt="Logo" className="w-20 h-12 mt-10" />
         </div>
@@ -210,7 +211,16 @@ const Dashboard = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {/* Video Cards */}
             {recommended.map((video) => (
-                <VideoCard key={video.id} video={video} /> ))}
+          <div
+            key={video.id}
+            className="p-4 rounded-lg shadow-sm bg-gray-800 shadow-gray-800 cursor-pointer"
+            onClick={() => handleVideoClick(video)}
+          >
+            <img src={video.thumbnail} alt={video.title} className="mb-4 rounded-lg" />
+            <h3 className="text-sm font-semibold">{video.title}</h3>
+            <p className="text-xs text-gray-400">{video.author} • {video.duration} • {video.views} views</p>
+          </div>
+        ))}
             {/* <div className="bg-gray-800 p-4 rounded-lg cursor-pointer">
               <img src="../assets/icpexplode.png" alt="Video Thumbnail" className="mb-4 rounded-lg" />
               <h3 className="text-sm font-semibold">Secret hacks to manipulating content in tech</h3>
@@ -229,7 +239,31 @@ const Dashboard = () => {
             {/* Add more video cards as needed */}
        
         </div>
-       
+        {selectedVideo && (
+        <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-30">
+          <div className="relative bg-[#1c1c1e] p-8 rounded-lg w-full max-w-2xl">
+            <button
+              className="absolute top-4 right-4 text-gray-500 hover:text-gray-700"
+              onClick={closePopup}
+            >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+            <iframe
+            className='mx-auto'
+              width="560"
+              height="315"
+              src={`https://www.youtube.com/embed/${selectedVideo.id}`}
+              title={selectedVideo.title}
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            ></iframe>
+            <h3 className="text-lg font-semibold mt-4">{selectedVideo.title}</h3>
+            <p className="text-sm">{selectedVideo.author} • {selectedVideo.duration} • {selectedVideo.views} views</p>
+          </div>
+        </div>
+      )}
 
 
               
@@ -237,9 +271,9 @@ const Dashboard = () => {
 
         <button
           onClick={toggleSidebar}
-          className="z-50 absolute inline bottom-0 right-10 bg-blue-500 text-white p-4 rounded-full shadow-lg hover:bg-blue-600 transition-colors duration-300"
+          className="z-50 absolute inline bottom-0 right-10 bg-gray-800 text-white p-4 rounded-full shadow-lg hover:bg-blue-600 transition-colors duration-300"
         >
-          <img src={profile} alt="Profile" className="w-6 h-6" />
+          <img src={Inquery} alt="inquery" className="w-6 h-6" />
         </button>
 
         {/* Sidebar */}
