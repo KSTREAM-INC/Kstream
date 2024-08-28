@@ -106,11 +106,11 @@ const Dashboard = () => {
 
 
   return (
-    <div className="flex h-screen ">
+    <div className="relative flex bg-gray-900">
       {/* Sidebar */}
-      <div className="h-dvh w-64 bg-gray-900 ">
-        <div className="flex items-center justify-center h-16 shadow-lg">
-          <img src={kstreamLogo} alt="Logo" className="w-20 h-12 mt-10" />
+      <div className="fixed top-0 left-0 h-screen w-64 overflow-y-auto">
+        <div className="flex items-center justify-center h-16 shadow-lg ">
+          <img src={kstreamLogo} alt="Logo" className="w-20 h-12 mt-12" />
         </div>
         <nav className="mt-10">
           <NavLink to="/" className="flex items-center px-6 py-2 mt-3 hover:bg-gray-700 hover:text-white text-[#d7d34a]">
@@ -133,8 +133,8 @@ const Dashboard = () => {
       </div>
 
       {/* Main Content */}
-      <div className=" relative flex-1 p-6 text-white bg-gray-900">
-        <div className="flex items-center justify-between mb-6">
+      <div className="flex-1 p-6 text-white ml-64">
+        <div className="flex items-center justify-between mb-6 fixed top-0 left-0 right-0 bg-gray-9 ml-[274px] pt-10 pb-5 px-10 bg-gray-900 rounded-b-md">
           <h1 className="text-2xl font-semibold">Home</h1>
           <div className="w-1/3">
             <input
@@ -146,7 +146,7 @@ const Dashboard = () => {
           <img src={profile} alt="Profile" className="ml-4 w-10 h-10 rounded-full" />
         </div>
 
-        <div className="mb-8">
+        <div className="mb-8 mt-20">
           <h2 className="text-lg mb-4">For you</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {/* Video Cards */}
@@ -271,7 +271,7 @@ const Dashboard = () => {
 
         <button
           onClick={toggleSidebar}
-          className="z-50 absolute inline bottom-0 right-10 bg-gray-800 text-white p-4 rounded-full shadow-lg hover:bg-blue-600 transition-colors duration-300"
+          className="z-50 absolute top-3/4 right-10 bg-gray-800 text-white p-4 rounded-full shadow-lg hover:bg-blue-600 transition-colors duration-300"
         >
           <img src={Inquery} alt="inquery" className="w-6 h-6" />
         </button>
