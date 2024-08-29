@@ -23,12 +23,13 @@ const Dashboard = () => {
    const handleQuestionChange = (e) => {setQuestion(e.target.value);};
 
    const handleSubmit = async (e) => {
+    console.log(question)
     e.preventDefault();
     if (!question.trim()) return;
 
     setIsLoading(true);
     try {
-      const response = await fetch('https://9c08-102-88-82-40.ngrok-free.app/chat', {
+      const response = await fetch('https://5cc1-102-91-4-230.ngrok-free.app/chat', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -37,11 +38,19 @@ const Dashboard = () => {
       });
 
       if (!response.ok) {
-        throw new Error('Network response was not ok');
+        throw new Error(`HTTP error! status: ${response.status}`);
       }
 
+      const contentType = response.headers.get("content-type");
+    if (contentType && contentType.indexOf("application/json") !== -1) {
       const data = await response.json();
       setAnswer(data.response); // Assuming the API returns a 'response' field
+    } else {
+      // If the response is not JSON, read it as text
+      const text = await response.text();
+      console.log("Received non-JSON response:", text);
+      setAnswer(text);
+    }
     } catch (error) {
       console.error('Error:', error);
       setAnswer('Sorry, there was an error processing your question.');
