@@ -333,6 +333,7 @@ const Dashboard = () => {
               )}
             </div>
           </div>
+              <p className='w-full h-20 text-center mt-10'>Copyright © 2024</p>
         </div>
       </div>
    
