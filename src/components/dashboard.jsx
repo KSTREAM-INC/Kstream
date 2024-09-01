@@ -151,7 +151,7 @@ const Dashboard = () => {
 
       {/* Main Content */}
       <div className="flex-1 h-20 p-6 text-white md:ml-40 lg:ml-64">
-        <div className="flex items-center justify-between mb-6 fixed top-0 left-0 right-0 bg-gray-9 md:ml-[180px] lg:ml-[274px] pt-10 pb-5 px-10 rounded-b-md">
+        <div className=" bg-[#1c1c1e] flex items-center justify-between mb-6 fixed top-0 left-0 right-0 bg-gray-9 md:ml-[180px] lg:ml-[274px] pt-10 pb-5 px-10 rounded-b-md">
           <h1 className="text-lg md:text-xl lg:text-2xl font-semibold">Home</h1>
           <div className="w-1/3">
             <input
@@ -288,7 +288,7 @@ const Dashboard = () => {
 
         <button
           onClick={toggleSidebar}
-          className="z-50 absolute bottom-14 right-12 bg-gray-800 text-white p-4 rounded-full shadow-lg hover:bg-blue-600 transition-colors duration-300"
+          className="z-50 fixed bottom-14 right-12 bg-gray-800 text-white p-4 rounded-full shadow-lg hover:bg-blue-600 transition-colors duration-300"
         >
           <img src={Inquery} alt="inquery" className="w-6 h-6" />
         </button>
@@ -297,9 +297,9 @@ const Dashboard = () => {
         <div
           className={` z-40  fixed top-0 right-0 w-80 h-lvh bg-gray-900 text-white shadow-lg transform transition-transform duration-300 ease-in-out ${
             isSidebarOpen ? 'translate-x-0' : 'translate-x-full'
-          }`}
+          } flex flex-col`}
         >
-          <div className="p-4">
+          <div className="p-4 flex-shrink-0">
             <button
               onClick={toggleSidebar}
               className="absolute top-4 right-4 text-gray-500 hover:text-gray-700"
@@ -331,18 +331,20 @@ const Dashboard = () => {
             {isLoading ? 'Submitting...' : 'Submit'}
             </button>
             </form>
-            <div className="mt-4 overflow-auto">
-                {true && (
+            </div>
+            <div className="flex-grow overflow-y-auto p-4">
+                {answer && (
                 <div >
                   <h3 className="font-bold">Answer:</h3>
-                  <p className="mt-2 ">Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32. The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.</p>
+                  <p className="mt-2 ">{answer}</p>
                 </div>
               )}
             </div>
           </div>
+              <p className='w-full h-20 text-center mt-10'>Copyright © 2024</p>
         </div>
       </div>
-    </div>
+   
   );
 };
 
