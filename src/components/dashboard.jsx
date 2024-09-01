@@ -4,6 +4,12 @@ import { HomeIcon, ClockIcon, CogIcon, CreditCardIcon } from "@heroicons/react/2
 import kstreamLogo from '../assets/logo.svg';
 import profile from "../assets/profile.svg";
 import Inquery from "../assets/inquery.svg";
+import icp2thumbnail from '../assets/icp2thumbnail.png';
+import whyICPcanister from '../assets/whyICPcanister.png';
+import tailwind_thumbnail from '../assets/tailwind_tumbnail.png';
+import icpexplode from '../assets/icpexplode.png';
+import icptalk from '../assets/icptalk.png';
+import ICPtruth from '../assets/ICPtruth.png';
 // import VideoCard from './videocard';
 
 const Dashboard = () => {
@@ -63,7 +69,7 @@ const Dashboard = () => {
     {
       id: 'bKzI7w5_fDU',
       title: 'What is INTERNET COMPUTER? ICP Crypto Explained! (Animated)',
-      thumbnail: '../assets/icp2thumbnail.png',
+      thumbnail: icp2thumbnail,
       author: 'Crypto Square',
       duration: '10 mins',
       views: '16k',
@@ -71,7 +77,7 @@ const Dashboard = () => {
     {
       id: 'rybpe-EwKmw',
       title: 'Why ICP Canisters and Motoko Backends Excel in Cybersecurity',
-      thumbnail: '../assets/whyICPcanister.png',
+      thumbnail: whyICPcanister,
       author: 'HIVE FORENSICS A.I.',
       duration: '3:16 mins',
       views: '37k',
@@ -79,16 +85,18 @@ const Dashboard = () => {
     {
       id: 'mr15Xzb1Ook',
       title: 'Tailwind in 100 seconds',
-      thumbnail: '../assets/tailwind_tumbnail.png',
+      thumbnail: tailwind_thumbnail,
       author: 'FireShip',
       duration: '2:20 mins',
       views: '765k',
-    }]
-
-    const recommended =[{
+    }
+  ];
+  
+  const recommended = [
+    {
       id: 'wqGOdinaC5s',
       title: 'Raoul Pal: "Internet Computer Will Be MASSIVE!" - DFINITY ICP Crypto 2023',
-      thumbnail: '../assets/icpexplode.png',
+      thumbnail: icpexplode,
       author: 'Bitcoin Bros',
       duration: '8.04 mins',
       views: '64k',
@@ -96,7 +104,7 @@ const Dashboard = () => {
     {
       id: 'XgsOKP224Zw',
       title: 'An Overview of the Internet Computer',
-      thumbnail: '../assets/icptalk.png',
+      thumbnail: icptalk,
       author: 'DFINITY',
       duration: '6:28 mins',
       views: '77k',
@@ -104,7 +112,7 @@ const Dashboard = () => {
     {
       id: 'cckBId4AXz0',
       title: 'The Truth About ICP Crypto: The Future of Internet & Blockchain in 4 Minutes | Elmin Ferati',
-      thumbnail: '../assets/ICPtruth.png',
+      thumbnail: ICPtruth,
       author: 'Elmin Ferati - Finance',
       duration: '3:45 mins',
       views: '7.2k',
